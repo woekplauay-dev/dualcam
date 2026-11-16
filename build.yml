@@ -1,0 +1,60 @@
+name: Build DualCam APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate project files
+        run: |
+          echo 'H4sIAAAAAAAC/6WPQYvCMBSE7/kVpaf24g8QPEjXBcXakN17eTRDiKR54TUVZPG/ry4i4sHLzvEbZphJYXY+thTJYUTMxY8qrhIknnxm8Zju6CbH7AKq+gFGOiE215xQeMJOyAbov27Nkh/mRV2URUK0iMPZYOIwZ8/vB7RssZiQK/MKP9fbfd8dem263ab57s1Gd1/1fx/cRiphzlr4iCEvIo0oVkX5MVNoaDQYWCykVD4OYbaoyiWlVNbqF5JmDTZOAQAA' | base64 -d | gunzip > 'settings.gradle.kts'
+          echo 'H4sIAAAAAAAC/yvIKU3PzCtWqOZSAILMFA2l5PxcvcS8lKL8zBS9xIKCnMzkxJLM/DwlTYWy1KJiIEtByULPVM9ISQEkW6mQlphTnArXnV+UrpeVWpJUlAg0VS87vyQnMw9mHLIRhnqWekYmqGbUcgEA06N/TY4AAAA=' | base64 -d | gunzip > 'build.gradle.kts'
+          echo 'H4sIAAAAAAAC/z3LsQqDQAwA0N1/aZDSocsN0j8oHVyDF4/YXALJKfr3DoLbW555geKYhWDZKnqJ9Bjr/uxf79qhZjfOsAYNF8fUfKXub01YYbJMEO0QSjbPPDHKfdT056jBjTf6fgQjrnsCdhRkaHIAAAA=' | base64 -d | gunzip > 'gradle.properties'
+          mkdir -p 'app'
+          echo 'H4sIAAAAAAAC/6VUUWvbMBB+z68wpg8JLGJuAmGGPmUdtNB2rKWvRZHO5hpZEpJsko3890mW7TrtWFp6D7Z0uvvu031na1GXKG3yZ5J4Qz5NmaoIldwo5IRqLZBRh0qmsyFCmZI8g9sY6jPJVjmBsk/xYYfJpNt0qJJWYDVlkFwkLXyBorLgCK+pYLRK2yh/oFHAPd/6sMVy0jo5FLQWbq1kgWUHF2xE7Ir/FzZYhTLCni8Hn6OmBDdU690NGOtB14oHttlr/62/SiiXka8R/hB5bmoU/GGvwY5IGhBALYw8bQftDUos9peSbgQE8gUVFo5itFFlTQ3/4Rtip0dHwTzx77ExP0eB07RPm3f9nyvtsMLfQNzOpbMvb4BeMkztKxG/TY+CZsPuML5up9WdDgKMr2xVbRis/bHXZoMC3d5f8Jo29DE2kDxe/rq/urt9ylavpPhAUuQSB+8th+ememgRW6FWvU6eOgcNkoNkOOjUUJH4WQFDd12xKO+yFxgrLaAC6dphm6Zda3ckZuXxNWfKQH52jNR/Mu9EaF/nnwMRWADbM/FJLg1yUP+AOIERehAe863b5RnJFiQ7VZcyh40XPO8XXe43sjiZqjVrZyZ/WWVk5YUL/6C/9b6s19kEAAA=' | base64 -d | gunzip > 'app/build.gradle.kts'
+          mkdir -p 'app/src/main'
+          echo 'H4sIAAAAAAAC/6VUTY/aMBC98ysi30naW4UStmmgWqSFVMBqj2hwBmLh2K7tLEu1P74O+VgQZA+tbx6/eX7zPOPw4a3g3itqw6SIyFf/C/FQUJkxsY9IaXfDb+RhPAgLEGyHxnoOLswIRKYlyyKSW6tGQWBojgUYv4n7VBYBqEOg0QRNjIwHA8+tsDRohgp1wUx1qdecjwQUGJGW4QPgJ/F8uoyJF4z/kWA5TdLlZBM/T2bpf9D8SlfrzSJdz37Okng9SxerM9kF2w7Blhp7qHLQ2RE0+tSFNTizTqSDavxdMo3OUqtLvCAGpTijYJ2Cc6BabRJwLo8/gB5K1eTdQBit3vV7u800HGHLMWB0U6AoN7WW2zwOW+Qu0VjtWsE9ptpU1dwCTamU1NYsLe/TYF1z4Jnr5G5eVzt/UgJPoGi7oi6VWvbK7KmLXJLUXvpzYCJucOQuEN8qPZ2TdzGGakSRaobCnq2NCHdnhoLqyXA27tg+yUHs0UREfqS+12Qr9gffD3jaSvfMjyzLUNxn4lAKms9l5soxzluOa6l6ZOby+JKjeJL08HlBru3Eqi5KNLjxFTBkwjrFwx3jFvX1WWd+7xTUyX6N8efxbNHN0RWJ61PcS336nKZF+U/x8yJ5nC5vyMKgR24YtE3SzkdwMSDuowran2o8+AtqZKy33AQAAA==' | base64 -d | gunzip > 'app/src/main/AndroidManifest.xml'
+          mkdir -p 'app/src/main/java/com/filmset/dualcam'
+          echo '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' | base64 -d | gunzip > 'app/src/main/java/com/filmset/dualcam/MainActivity.kt'
+          mkdir -p 'app/src/main/res/values'
+          echo 'H4sIAAAAAAAC/7Oxr8jNUShLLSrOzM+zVTLUM1BSSM1Lzk/JzEu3VSotSdO1ULK347IpSi3OLy1KTi2241IAApvikiKgCoW8xNxUW6XEgoJ4EEvJzqU0Mcc5MddGHyIP1KiPpBMAmzTMRm0AAAA=' | base64 -d | gunzip > 'app/src/main/res/values/strings.xml'
+          mkdir -p 'app/src/main/res/values'
+          echo 'H4sIAAAAAAAC/42Qy27CMBBF93yFNXsSukOVEwhULLPiB1x7AAt7JhrbpPw9KQ+pUjfM8l6dM9LVq58Y1AUleaYGPqoFKCTLztOxgZIP8yWs2pkWTFzEYmpnajqd8jWgIhOxgf0JI1ZfxYStiaAGI0j5FXfDsOU4mFz13Nk8fdkYgYflbvIZ41NkyAl79zl6cjxujD0fhQs5aNevynJgqb/D1On6F33HtCshJCuIBG2Wgu+TPe99Dvgf0/V9gWmZ+s80N9Vvp8ZOAQAA' | base64 -d | gunzip > 'app/src/main/res/values/themes.xml'
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Generate Gradle wrapper
+        run: gradle wrapper --gradle-version 8.9
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Rename APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk DualCam.apk
+
+      - name: Upload as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DualCam-APK
+          path: DualCam.apk
+
+      - name: Publish downloadable release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: DualCam APK
+          files: DualCam.apk
